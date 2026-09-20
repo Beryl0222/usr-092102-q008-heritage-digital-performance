@@ -1,0 +1,9 @@
+{
+  "event_id": "092102-008-sample-001",
+  "event_type": "ELEMENT_CLASSIFIED",
+  "aggregate_type": "heritage_element",
+  "aggregate_id": "heritage_digital_performance-001",
+  "occurred_at": "2026-09-20T12:00:00+08:00",
+  "version": 1,
+  "summary": "非遗数字演绎授权领域样例"
+}
