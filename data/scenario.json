@@ -1,0 +1,712 @@
+[
+  {
+    "event_id": "evt-0001",
+    "event_type": "COMMUNITY_REGISTERED",
+    "aggregate_type": "source_community",
+    "aggregate_id": "community-001",
+    "occurred_at": "2026-03-02T10:00:00+08:00",
+    "version": 1,
+    "summary": "登记来源共同体：景泰蓝制作技艺共同体",
+    "payload": { "name": "景泰蓝制作技艺共同体", "seat": "北京市珐琅厂", "contact": "共同体秘书处" }
+  },
+  {
+    "event_id": "evt-0002",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-project",
+    "occurred_at": "2026-03-02T10:05:00+08:00",
+    "version": 1,
+    "summary": "登记技艺项目：景泰蓝制作技艺",
+    "payload": {
+      "name": "景泰蓝制作技艺",
+      "kind": "craft_project",
+      "summary_public": "国家级非物质文化遗产景泰蓝制作技艺",
+      "creators": [{ "name": "张景泰", "role": "代表性传承人" }]
+    }
+  },
+  {
+    "event_id": "evt-0003",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-project",
+    "occurred_at": "2026-03-02T10:06:00+08:00",
+    "version": 2,
+    "summary": "技艺项目归属共同体维护",
+    "payload": { "link_type": "maintained_by_community", "target_type": "source_community", "target_id": "community-001" }
+  },
+  {
+    "event_id": "evt-0004",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-public",
+    "occurred_at": "2026-03-03T09:00:00+08:00",
+    "version": 1,
+    "summary": "登记公开知识：景泰蓝历史与釉色常识",
+    "payload": {
+      "name": "景泰蓝历史与釉色常识",
+      "kind": "public_knowledge",
+      "summary_public": "公开出版物与课程中的基础知识",
+      "creators": [{ "name": "张景泰", "role": "整理者" }]
+    }
+  },
+  {
+    "event_id": "evt-0005",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-public",
+    "occurred_at": "2026-03-03T09:01:00+08:00",
+    "version": 2,
+    "summary": "公开知识归属技艺项目",
+    "payload": { "link_type": "belongs_to_project", "target_type": "heritage_element", "target_id": "el-project" }
+  },
+  {
+    "event_id": "evt-0006",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-step",
+    "occurred_at": "2026-03-03T09:05:00+08:00",
+    "version": 1,
+    "summary": "登记受限步骤：点蓝火候口诀",
+    "payload": {
+      "name": "点蓝火候口诀",
+      "kind": "restricted_step",
+      "summary_public": "点蓝火候口诀（受限步骤，细节不公开）",
+      "detail_private": "口诀全文：三火九转，看丝定色……",
+      "creators": [{ "name": "张景泰", "role": "口诀持有人" }]
+    }
+  },
+  {
+    "event_id": "evt-0007",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-step",
+    "occurred_at": "2026-03-03T09:06:00+08:00",
+    "version": 2,
+    "summary": "受限步骤归属技艺项目",
+    "payload": { "link_type": "belongs_to_project", "target_type": "heritage_element", "target_id": "el-project" }
+  },
+  {
+    "event_id": "evt-0008",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-pattern",
+    "occurred_at": "2026-03-03T09:10:00+08:00",
+    "version": 1,
+    "summary": "登记传统纹样：缠枝莲纹",
+    "payload": {
+      "name": "缠枝莲纹",
+      "kind": "traditional_pattern",
+      "summary_public": "传统缠枝莲纹样谱系",
+      "creators": [{ "name": "景泰蓝制作技艺共同体", "role": "共同体维护" }]
+    }
+  },
+  {
+    "event_id": "evt-0009",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-pattern",
+    "occurred_at": "2026-03-03T09:11:00+08:00",
+    "version": 2,
+    "summary": "传统纹样归属技艺项目",
+    "payload": { "link_type": "belongs_to_project", "target_type": "heritage_element", "target_id": "el-project" }
+  },
+  {
+    "event_id": "evt-0010",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-story",
+    "occurred_at": "2026-03-03T09:15:00+08:00",
+    "version": 1,
+    "summary": "登记故事素材：老匠人传艺故事",
+    "payload": {
+      "name": "老匠人传艺故事",
+      "kind": "story_material",
+      "summary_public": "老匠人口述的传艺故事",
+      "creators": [{ "name": "张景泰", "role": "讲述者" }]
+    }
+  },
+  {
+    "event_id": "evt-0011",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-story",
+    "occurred_at": "2026-03-03T09:16:00+08:00",
+    "version": 2,
+    "summary": "故事素材归属技艺项目",
+    "payload": { "link_type": "belongs_to_project", "target_type": "heritage_element", "target_id": "el-project" }
+  },
+  {
+    "event_id": "evt-0012",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-portrait",
+    "occurred_at": "2026-03-03T09:20:00+08:00",
+    "version": 1,
+    "summary": "登记参与者肖像：学徒李某形象",
+    "payload": {
+      "name": "学徒李某形象",
+      "kind": "participant_portrait",
+      "summary_public": "工坊影像记录中的学徒形象",
+      "creators": [{ "name": "李某", "role": "出镜学徒" }]
+    }
+  },
+  {
+    "event_id": "evt-0013",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-portrait",
+    "occurred_at": "2026-03-03T09:21:00+08:00",
+    "version": 2,
+    "summary": "参与者肖像归属技艺项目",
+    "payload": { "link_type": "belongs_to_project", "target_type": "heritage_element", "target_id": "el-project" }
+  },
+  {
+    "event_id": "evt-0014",
+    "event_type": "ELEMENT_CLASSIFIED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-visitor",
+    "occurred_at": "2026-03-03T09:25:00+08:00",
+    "version": 1,
+    "summary": "登记体验作品：游客掐丝习作",
+    "payload": {
+      "name": "游客掐丝习作",
+      "kind": "experience_work",
+      "origin": "offline_experience",
+      "summary_public": "线下体验活动中游客完成的掐丝习作",
+      "creators": [{ "name": "游客王某", "role": "体验者" }]
+    }
+  },
+  {
+    "event_id": "evt-0015",
+    "event_type": "ELEMENT_LINKED",
+    "aggregate_type": "heritage_element",
+    "aggregate_id": "el-visitor",
+    "occurred_at": "2026-03-03T09:26:00+08:00",
+    "version": 2,
+    "summary": "体验作品归属技艺项目",
+    "payload": { "link_type": "belongs_to_project", "target_type": "heritage_element", "target_id": "el-project" }
+  },
+  {
+    "event_id": "evt-0016",
+    "event_type": "PERMISSION_GRANTED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-inheritor-core",
+    "occurred_at": "2026-03-10T10:00:00+08:00",
+    "version": 1,
+    "summary": "传承人授权：公开知识、纹样、故事可展示/教学/改编/销售",
+    "payload": {
+      "source": "inheritor",
+      "applies_to": { "element_ids": ["el-public", "el-pattern", "el-story"] },
+      "rights": ["display", "teaching", "adaptation", "sales"],
+      "territory": null,
+      "term": { "start": "2026-01-01", "end": "2030-12-31" },
+      "revenue_shares": [
+        { "beneficiary": "张景泰", "role": "代表性传承人", "percent": 40 },
+        { "beneficiary": "景泰蓝制作技艺共同体", "role": "来源共同体", "percent": 30 },
+        { "beneficiary": "焕新影业", "role": "演绎企业", "percent": 30 }
+      ],
+      "note": "传承人核心授权"
+    }
+  },
+  {
+    "event_id": "evt-0017",
+    "event_type": "PERMISSION_GRANTED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-inheritor-step",
+    "occurred_at": "2026-03-10T10:05:00+08:00",
+    "version": 1,
+    "summary": "传承人授权：受限步骤仅限境内展示",
+    "payload": {
+      "source": "inheritor",
+      "applies_to": { "element_ids": ["el-step"] },
+      "rights": ["display"],
+      "territory": ["CN"],
+      "term": { "start": "2026-01-01", "end": "2030-12-31" },
+      "note": "仅限现场展示记录，不开放教学与改编"
+    }
+  },
+  {
+    "event_id": "evt-0018",
+    "event_type": "PERMISSION_GRANTED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-covenant-core",
+    "occurred_at": "2026-03-15T10:00:00+08:00",
+    "version": 1,
+    "summary": "共同体约定：项目内展示与教学开放",
+    "payload": {
+      "source": "community_covenant",
+      "applies_to": { "project_id": "el-project" },
+      "rights": ["display", "teaching"],
+      "territory": null,
+      "term": { "start": "2026-01-01", "end": "2030-12-31" },
+      "note": "共同体约定：展示与教学开放"
+    }
+  },
+  {
+    "event_id": "evt-0019",
+    "event_type": "PERMISSION_GRANTED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-participant",
+    "occurred_at": "2026-04-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "学徒授权：本人形象可境内展示与改编",
+    "payload": {
+      "source": "participant",
+      "applies_to": { "element_ids": ["el-portrait"] },
+      "rights": ["display", "adaptation"],
+      "territory": ["CN"],
+      "term": { "start": "2026-04-01", "end": "2026-12-31" },
+      "note": "学徒同意出镜及影像改编"
+    }
+  },
+  {
+    "event_id": "evt-0020",
+    "event_type": "PERMISSION_GRANTED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-enterprise",
+    "occurred_at": "2026-05-20T14:00:00+08:00",
+    "version": 1,
+    "summary": "企业合同登记：主张项目级展示/改编/销售/模型训练权利",
+    "payload": {
+      "source": "enterprise_contract",
+      "applies_to": { "project_id": "el-project" },
+      "rights": ["display", "adaptation", "sales", "model_training"],
+      "territory": null,
+      "term": { "start": "2026-05-20", "end": "2029-05-19" },
+      "contract": "ENT-2026-017",
+      "note": "企业合同 ENT-2026-017 主张的演绎权利"
+    }
+  },
+  {
+    "event_id": "evt-0021",
+    "event_type": "CHANNEL_REGISTERED",
+    "aggregate_type": "commercial_channel",
+    "aggregate_id": "ch-study",
+    "occurred_at": "2026-05-25T10:00:00+08:00",
+    "version": 1,
+    "summary": "登记商业渠道：研学平台",
+    "payload": { "name": "研学平台", "kind": "education", "rights_offered": ["teaching", "display"], "territory": ["CN"], "operator": "非遗研学中心" }
+  },
+  {
+    "event_id": "evt-0022",
+    "event_type": "CHANNEL_REGISTERED",
+    "aggregate_type": "commercial_channel",
+    "aggregate_id": "ch-overseas",
+    "occurred_at": "2026-05-25T10:05:00+08:00",
+    "version": 1,
+    "summary": "登记商业渠道：海外展映",
+    "payload": { "name": "海外展映", "kind": "exhibition", "rights_offered": ["display"], "territory": ["overseas"], "operator": "文化交流中心" }
+  },
+  {
+    "event_id": "evt-0023",
+    "event_type": "CHANNEL_REGISTERED",
+    "aggregate_type": "commercial_channel",
+    "aggregate_id": "ch-shop",
+    "occurred_at": "2026-05-25T10:10:00+08:00",
+    "version": 1,
+    "summary": "登记商业渠道：工坊商店",
+    "payload": { "name": "工坊商店", "kind": "retail", "rights_offered": ["sales"], "territory": ["CN"], "operator": "珐琅厂工坊" }
+  },
+  {
+    "event_id": "evt-0024",
+    "event_type": "CHANNEL_REGISTERED",
+    "aggregate_type": "commercial_channel",
+    "aggregate_id": "ch-drama",
+    "occurred_at": "2026-05-25T10:15:00+08:00",
+    "version": 1,
+    "summary": "登记商业渠道：短剧平台",
+    "payload": { "name": "短剧平台", "kind": "streaming", "rights_offered": ["display", "adaptation"], "territory": null, "operator": "焕新影业" }
+  },
+  {
+    "event_id": "evt-0025",
+    "event_type": "BATCH_REGISTERED",
+    "aggregate_type": "generation_batch",
+    "aggregate_id": "batch-001",
+    "occurred_at": "2026-05-28T09:00:00+08:00",
+    "version": 1,
+    "summary": "登记生成批次：短剧预告（焕新GenVideo 2.3.1）",
+    "payload": { "tool": { "name": "焕新GenVideo", "version": "2.3.1" }, "operator": "焕新影业", "note": "短剧预告生成批次" }
+  },
+  {
+    "event_id": "evt-0026",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-char",
+    "occurred_at": "2026-05-29T11:00:00+08:00",
+    "version": 1,
+    "summary": "生成AI新角色“小蓝”（输入：学徒李某形象）",
+    "payload": {
+      "title": "AI新角色“小蓝”",
+      "batch_id": "batch-001",
+      "inputs": [{ "kind": "element", "id": "el-portrait" }],
+      "tool": { "name": "焕新GenVideo", "version": "2.3.1" },
+      "human_edits": [{ "editor": "角色组长", "note": "调整面部特征与服饰", "at": "2026-05-29T15:00:00+08:00" }]
+    }
+  },
+  {
+    "event_id": "evt-0027",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-trailer-v1",
+    "occurred_at": "2026-05-30T10:00:00+08:00",
+    "version": 1,
+    "summary": "生成AI短剧预告 v1（含受限步骤与AI角色）",
+    "payload": {
+      "title": "AI短剧预告 v1",
+      "batch_id": "batch-001",
+      "inputs": [
+        { "kind": "asset", "id": "asset-char" },
+        { "kind": "element", "id": "el-step" },
+        { "kind": "element", "id": "el-pattern" },
+        { "kind": "element", "id": "el-story" }
+      ],
+      "tool": { "name": "焕新GenVideo", "version": "2.3.1" },
+      "human_edits": [{ "editor": "导演", "note": "剪辑与配音", "at": "2026-05-30T18:00:00+08:00" }],
+      "segments": [
+        { "start": 0, "end": 6, "inputs": [{ "kind": "element", "id": "el-pattern" }, { "kind": "element", "id": "el-story" }] },
+        { "start": 6, "end": 15, "inputs": [{ "kind": "element", "id": "el-step" }] },
+        { "start": 15, "end": 30, "inputs": [{ "kind": "asset", "id": "asset-char" }] }
+      ]
+    }
+  },
+  {
+    "event_id": "evt-0028",
+    "event_type": "RELEASE_REVIEWED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-trailer-v1",
+    "occurred_at": "2026-06-01T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布审核：AI短剧预告 v1 上线短剧平台（审核时企业合同与本人授权均有效）",
+    "payload": {
+      "title": "AI短剧预告",
+      "release_version": "v1",
+      "asset_id": "asset-trailer-v1",
+      "channel_id": "ch-drama",
+      "rights_used": ["display", "adaptation"],
+      "territory": ["CN"],
+      "at": "2026-06-01T10:00:00+08:00",
+      "decision": "approved",
+      "findings": []
+    }
+  },
+  {
+    "event_id": "evt-0029",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-highlights",
+    "occurred_at": "2026-06-08T10:00:00+08:00",
+    "version": 1,
+    "summary": "制作展示花絮（现场影像，含学徒形象）",
+    "payload": {
+      "title": "展示花絮",
+      "batch_id": null,
+      "inputs": [{ "kind": "element", "id": "el-portrait" }],
+      "tool": { "name": "现场剪辑", "version": "1.0" },
+      "human_edits": []
+    }
+  },
+  {
+    "event_id": "evt-0030",
+    "event_type": "RELEASE_REVIEWED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-highlights",
+    "occurred_at": "2026-06-09T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布审核：展示花絮上线短剧平台",
+    "payload": {
+      "title": "展示花絮",
+      "release_version": "v1",
+      "asset_id": "asset-highlights",
+      "channel_id": "ch-drama",
+      "rights_used": ["display"],
+      "territory": ["CN"],
+      "at": "2026-06-09T10:00:00+08:00",
+      "decision": "approved",
+      "findings": []
+    }
+  },
+  {
+    "event_id": "evt-0031",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-study",
+    "occurred_at": "2026-06-10T10:00:00+08:00",
+    "version": 1,
+    "summary": "制作研学课程包（公开知识与纹样）",
+    "payload": {
+      "title": "研学课程包",
+      "batch_id": null,
+      "inputs": [{ "kind": "element", "id": "el-public" }, { "kind": "element", "id": "el-pattern" }],
+      "tool": { "name": "课程编排工具", "version": "1.2" },
+      "human_edits": [{ "editor": "教研组", "note": "编排课程章节", "at": "2026-06-10T15:00:00+08:00" }]
+    }
+  },
+  {
+    "event_id": "evt-0032",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-overseas",
+    "occurred_at": "2026-06-12T10:00:00+08:00",
+    "version": 1,
+    "summary": "制作海外展示片（公开知识与故事素材）",
+    "payload": {
+      "title": "海外展示片",
+      "batch_id": "batch-001",
+      "inputs": [{ "kind": "element", "id": "el-public" }, { "kind": "element", "id": "el-story" }],
+      "tool": { "name": "焕新GenVideo", "version": "2.3.1" },
+      "human_edits": []
+    }
+  },
+  {
+    "event_id": "evt-0033",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-kit",
+    "occurred_at": "2026-06-15T10:00:00+08:00",
+    "version": 1,
+    "summary": "制作工坊材料包（缠枝莲纹）",
+    "payload": {
+      "title": "工坊材料包",
+      "batch_id": null,
+      "inputs": [{ "kind": "element", "id": "el-pattern" }],
+      "tool": { "name": "排版工具", "version": "3.0" },
+      "human_edits": []
+    }
+  },
+  {
+    "event_id": "evt-0034",
+    "event_type": "RELEASE_REVIEWED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-study",
+    "occurred_at": "2026-06-20T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布审核：研学课程包上线研学平台",
+    "payload": {
+      "title": "研学课程包",
+      "release_version": "2026春季版",
+      "asset_id": "asset-study",
+      "channel_id": "ch-study",
+      "rights_used": ["teaching"],
+      "territory": ["CN"],
+      "at": "2026-06-20T10:00:00+08:00",
+      "decision": "approved",
+      "findings": []
+    }
+  },
+  {
+    "event_id": "evt-0035",
+    "event_type": "RELEASE_REVIEWED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-overseas",
+    "occurred_at": "2026-06-25T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布审核：海外展示片上线海外展映渠道",
+    "payload": {
+      "title": "海外展示片",
+      "release_version": "v1",
+      "asset_id": "asset-overseas",
+      "channel_id": "ch-overseas",
+      "rights_used": ["display"],
+      "territory": ["overseas"],
+      "at": "2026-06-25T10:00:00+08:00",
+      "decision": "approved",
+      "findings": []
+    }
+  },
+  {
+    "event_id": "evt-0036",
+    "event_type": "RELEASE_REVIEWED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-kit",
+    "occurred_at": "2026-06-26T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布审核：工坊材料包上线工坊商店",
+    "payload": {
+      "title": "工坊材料包",
+      "release_version": "v1",
+      "asset_id": "asset-kit",
+      "channel_id": "ch-shop",
+      "rights_used": ["sales"],
+      "territory": ["CN"],
+      "at": "2026-06-26T10:00:00+08:00",
+      "decision": "approved",
+      "findings": []
+    }
+  },
+  {
+    "event_id": "evt-0037",
+    "event_type": "PROHIBITION_DECLARED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-covenant-ban",
+    "occurred_at": "2026-07-05T09:00:00+08:00",
+    "version": 1,
+    "summary": "共同体明确禁用：受限步骤不得用于模型训练、改编与教学",
+    "payload": {
+      "source": "community_covenant",
+      "applies_to": { "element_ids": ["el-step"] },
+      "rights": ["model_training", "adaptation", "teaching"],
+      "reason": "口诀不外传：禁止用于模型训练、改编与教程"
+    }
+  },
+  {
+    "event_id": "evt-0038",
+    "event_type": "PROHIBITION_DECLARED",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-participant-ban",
+    "occurred_at": "2026-07-10T09:00:00+08:00",
+    "version": 1,
+    "summary": "学徒明确禁用：本人形象不得用于模型训练与生成新角色",
+    "payload": {
+      "source": "participant",
+      "applies_to": { "element_ids": ["el-portrait"] },
+      "rights": ["model_training", "adaptation"],
+      "reason": "不同意肖像被用于模型训练与生成新角色"
+    }
+  },
+  {
+    "event_id": "evt-0039",
+    "event_type": "COLLEGIAL_CASE_OPENED",
+    "aggregate_type": "collegial_case",
+    "aggregate_id": "case-001",
+    "occurred_at": "2026-07-12T10:00:00+08:00",
+    "version": 1,
+    "summary": "合议立案：企业合同主张与共同体约定、参与者声明相抵触",
+    "payload": {
+      "element_ids": ["el-step", "el-portrait"],
+      "rights": ["model_training", "adaptation"],
+      "statement_ids": ["perm-enterprise", "perm-covenant-ban", "perm-participant", "perm-participant-ban"],
+      "reason": "企业合同主张与共同体约定、参与者声明相抵触",
+      "opened_by": "非遗保护机构",
+      "status": "open"
+    }
+  },
+  {
+    "event_id": "evt-0040",
+    "event_type": "COLLEGIAL_DECISION_RECORDED",
+    "aggregate_type": "collegial_case",
+    "aggregate_id": "case-001",
+    "occurred_at": "2026-08-15T10:00:00+08:00",
+    "version": 2,
+    "summary": "合议裁定：受限步骤与参与者肖像的模型训练、改编均维持禁用",
+    "payload": {
+      "votes": [
+        { "party": "inheritor", "stance": "prohibit", "note": "尊重行规与本人意愿" },
+        { "party": "community_covenant", "stance": "prohibit", "note": "共同体约定明确禁用" },
+        { "party": "enterprise_contract", "stance": "grant", "note": "主张合同权利" }
+      ],
+      "outcomes": { "model_training": "prohibited", "adaptation": "prohibited" },
+      "rationale": "存在明确禁用，多数票不得越过；受限步骤与参与者肖像不开放模型训练与改编",
+      "status": "decided"
+    }
+  },
+  {
+    "event_id": "evt-0041",
+    "event_type": "ASSET_GENERATED",
+    "aggregate_type": "generated_asset",
+    "aggregate_id": "asset-trailer-v2",
+    "occurred_at": "2026-09-10T10:00:00+08:00",
+    "version": 1,
+    "summary": "生成AI短剧预告 v2（移除受限步骤与AI角色）",
+    "payload": {
+      "title": "AI短剧预告 v2",
+      "batch_id": "batch-001",
+      "inputs": [
+        { "kind": "element", "id": "el-pattern" },
+        { "kind": "element", "id": "el-story" },
+        { "kind": "element", "id": "el-public" }
+      ],
+      "tool": { "name": "焕新GenVideo", "version": "2.3.1" },
+      "human_edits": [{ "editor": "导演", "note": "移除受限步骤与AI角色段落", "at": "2026-09-10T16:00:00+08:00" }],
+      "segments": [
+        { "start": 0, "end": 8, "inputs": [{ "kind": "element", "id": "el-public" }] },
+        { "start": 8, "end": 20, "inputs": [{ "kind": "element", "id": "el-pattern" }, { "kind": "element", "id": "el-story" }] }
+      ]
+    }
+  },
+  {
+    "event_id": "evt-0042",
+    "event_type": "RELEASE_REVIEWED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-trailer-v2",
+    "occurred_at": "2026-09-12T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布审核：AI短剧预告 v2 上线短剧平台",
+    "payload": {
+      "title": "AI短剧预告",
+      "release_version": "v2",
+      "asset_id": "asset-trailer-v2",
+      "channel_id": "ch-drama",
+      "rights_used": ["display", "adaptation"],
+      "territory": ["CN"],
+      "at": "2026-09-12T10:00:00+08:00",
+      "decision": "approved",
+      "findings": []
+    }
+  },
+  {
+    "event_id": "evt-0043",
+    "event_type": "REVENUE_RECORDED",
+    "aggregate_type": "revenue_record",
+    "aggregate_id": "rev-001",
+    "occurred_at": "2026-09-20T10:00:00+08:00",
+    "version": 1,
+    "summary": "登记收入：工坊材料包九月销售 12000 元",
+    "payload": { "release_id": "rel-kit", "amount": 12000, "currency": "CNY", "note": "工坊材料包九月销售" }
+  },
+  {
+    "event_id": "evt-0044",
+    "event_type": "REVENUE_RECORDED",
+    "aggregate_type": "revenue_record",
+    "aggregate_id": "rev-002",
+    "occurred_at": "2026-09-22T10:00:00+08:00",
+    "version": 1,
+    "summary": "登记收入：研学课程包九月收入 8000 元",
+    "payload": { "release_id": "rel-study", "amount": 8000, "currency": "CNY", "note": "研学课程包九月收入" }
+  },
+  {
+    "event_id": "evt-0045",
+    "event_type": "PERMISSION_WITHDRAWN",
+    "aggregate_type": "usage_permission",
+    "aggregate_id": "perm-participant",
+    "occurred_at": "2026-10-01T09:00:00+08:00",
+    "version": 2,
+    "summary": "学徒撤回肖像展示与改编授权",
+    "payload": { "effective_at": "2026-10-01T00:00:00+08:00", "reason": "学徒撤回肖像展示与改编授权" }
+  },
+  {
+    "event_id": "evt-0046",
+    "event_type": "TAKEDOWN_ISSUED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-highlights",
+    "occurred_at": "2026-10-01T09:30:00+08:00",
+    "version": 2,
+    "summary": "下架展示花絮 v1：含被撤回授权的学徒形象",
+    "payload": {
+      "release_version": "v1",
+      "title": "展示花絮",
+      "asset_id": "asset-highlights",
+      "elements": ["el-portrait"],
+      "rights": ["display"],
+      "withdrawn_permission": "perm-participant",
+      "reason": "授权 perm-participant 已撤回（学徒撤回肖像展示与改编授权）"
+    }
+  },
+  {
+    "event_id": "evt-0047",
+    "event_type": "TAKEDOWN_ISSUED",
+    "aggregate_type": "distribution_release",
+    "aggregate_id": "rel-trailer-v1",
+    "occurred_at": "2026-10-01T09:31:00+08:00",
+    "version": 2,
+    "summary": "下架AI短剧预告 v1：衍生链含被撤回授权的学徒形象",
+    "payload": {
+      "release_version": "v1",
+      "title": "AI短剧预告",
+      "asset_id": "asset-trailer-v1",
+      "elements": ["el-portrait"],
+      "rights": ["display", "adaptation"],
+      "withdrawn_permission": "perm-participant",
+      "reason": "授权 perm-participant 已撤回（学徒撤回肖像展示与改编授权）"
+    }
+  }
+]

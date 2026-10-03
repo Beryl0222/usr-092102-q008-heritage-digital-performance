@@ -1,10 +1,11 @@
 {
   "name": "heritage-digital-performance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "领域事件基础校验",
+  "description": "非遗数字演绎授权后端：事件追溯、权利解析、合议、合规审核与收益审计",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "demo": "node scripts/demo.js"
   }
 }

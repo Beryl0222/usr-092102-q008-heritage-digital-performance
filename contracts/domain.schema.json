@@ -19,20 +19,34 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "COMMUNITY_REGISTERED",
         "ELEMENT_CLASSIFIED",
+        "ELEMENT_LINKED",
         "PERMISSION_GRANTED",
+        "PROHIBITION_DECLARED",
+        "PERMISSION_WITHDRAWN",
+        "COLLEGIAL_CASE_OPENED",
+        "COLLEGIAL_DECISION_RECORDED",
+        "BATCH_REGISTERED",
         "ASSET_GENERATED",
+        "CHANNEL_REGISTERED",
         "RELEASE_REVIEWED",
-        "PERMISSION_WITHDRAWN"
+        "TAKEDOWN_ISSUED",
+        "REVENUE_RECORDED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "heritage_element",
+        "source_community",
         "usage_permission",
+        "generation_batch",
         "generated_asset",
-        "distribution_release"
+        "commercial_channel",
+        "distribution_release",
+        "collegial_case",
+        "revenue_record"
       ]
     },
     "aggregate_id": {
@@ -50,6 +64,10 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "description": "业务负载，按事件类型约定字段；信封字段保持不变"
     }
   },
   "additionalProperties": true
