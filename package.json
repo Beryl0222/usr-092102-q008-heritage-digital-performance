@@ -5,6 +5,8 @@
   "type": "module",
   "description": "领域事件基础校验",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "seed": "node scripts/seed-demo.js --force",
+    "serve": "node src/server.js data/demo-events.jsonl"
   }
 }

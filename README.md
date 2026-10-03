@@ -1,18 +1,90 @@
 # 非遗数字演绎授权
 
-本仓库保存非遗数字演绎授权的领域词汇、事件约定与基础校验代码，便于各参与方在后续开发中统一对象身份和版本语义。
+景泰蓝等非遗技艺在 AI 短剧、研学、海外展示与工坊销售中的**数字演绎授权后端**。
+所有事实以事件追溯（event sourcing）落库，在线实时回答三件事：
+
+> **这一秒画面依据什么、允许在哪用、收益归谁。**
+
+撤掉整部短剧的做法会连带中断已获许可的研学、海外展示与工坊销售；本系统改为**细粒度许可交集 + 精确下架**：
+不合法的衍生版本被拦截或下架，无关内容与其他合法渠道不受牵连。
+
+## 领域模型（细粒度关系）
+
+技艺项目 `heritage_element` · 来源共同体 `source_community` · 素材 `material`
+（公开知识 / 受限步骤 / 传统纹样 / 故事素材 / 参与者肖像 / 线下体验作品）·
+许可 `usage_permission` · 合议 `consent_council` · 生成批次 `generation_batch` ·
+生成版本 `generated_asset` · 商业渠道 `distribution_channel` · 发布 `distribution_release` ·
+收入 `revenue_record` · 下架指令 `takedown_order`。
+
+详见 `contracts/domain.schema.json` 的事件枚举与 `$defs` 字段约定。
+
+## 核心规则（`src/policy.js`）
+
+1. **五项权利彼此独立**：展示 `display`、教学 `teaching`、模型训练 `training`、改编 `adaptation`、销售 `sale`；
+   每条许可再按 **地域 × 期限 × 渠道** 限定。
+2. **组合素材只能取许可交集**：输入清单中任一素材在某权利×地域下不成立，整个版本不得生成/发布。
+3. **明确禁用一票否决**：`PERMISSION_DENIED` 优先于一切授权；传承人、共同体约定与企业合同相抵触时进入合议，
+   但合议只能在无禁用的范围内求交集，**任何多数票都不能越过明确禁用**（服务会拒绝出具越权的和解规则）。
+4. **下游许可不得宽于上游**：企业合同以 `derived_from` 引用上游许可，权利/地域/期限/素材超界即拒绝；
+   上游到期或撤回，下游自动失效。
+5. **训练默认退出**：线下体验者作品默认不进训练库；入库须素材本人显式 opt-in **且**存在有效 `training` 授权，
+   两者取交集。批次事件只记录实际准入的素材，被排除者及原因一并留痕。
+6. **撤回 = 停止未来使用 + 精确下架**：撤回许可后，系统列出**真正需要下架**的版本——
+   仅限输入清单（含改编链闭包）实际依据该许可、且在该发布权利×地域下已无其他授权交集的发布；
+   输入清单不含该素材的作品、同一版本在其他合法渠道的发布均不列入。
+
+## 生成留痕（回答“依据什么”）
+
+每个生成版本（`ASSET_GENERATED`）保存：
+
+- **输入清单 manifest**：素材 id、用途角色（prompt/style/likeness/step_footage…）、生成当时冻结的许可 id；
+  改编版本沿 `parent_version_id` 向上闭包全部父版本输入；
+- **工具与模型版本快照**、批次、提示词存档引用；
+- **人工修改** `human_edits`（谁、何时、改了什么）。
+- 发布时逐秒片段 `segments` 只能引用输入清单闭包内的素材，否则驳回。
+
+## 收入核对（回答“收益归谁”）
+
+- `recordRevenue` 在记账当时**重新核验**发布仍合法（许可可能在发布后到期/撤回），不合法拒绝记账；
+- `allocateRevenue` 按许可的收益份额（基点 bps）分配：渠道专属许可优先，份额合计超 100% 报错交回合议，
+  不自动摊薄；余额与尾差归运营方并显式记录；
+- `revenueLedger` 从一笔收入即可核对：发布、渠道、逐秒依据、生成冻结许可、发布时点许可、署名名单与分配结果。
 
 ## 目录
 
-- `contracts/domain.schema.json`：领域事件信封及稳定枚举。
-- `data/sample.json`：一条可用于联调的中文业务样例。
-- `src/`：事件基础字段校验。
-- `tests/`：领域资料的一致性检查。
+- `contracts/domain.schema.json`：事件信封、事件/聚合枚举与字段约定（向后兼容原五个事件）。
+- `src/store.js`：只追加事件存储（内存 / JSONL 持久化，聚合版本单调递增）。
+- `src/projection.js`：事件重放投影，支持 `asOf` 时点重放。
+- `src/policy.js`：许可交集、禁用否决、合议、训练准入、改编链闭包。
+- `src/service.js`：应用服务（登记 / 授权 / 批次 / 生成 / 发布审查 / 收入 / 撤回 / 下架 / 查询）。
+- `src/server.js`：只读查询 HTTP 后端。
+- `src/scenario.js`：景泰蓝基线场景（测试与种子共用）。
+- `scripts/seed-demo.js`：生成演示事件日志。
+- `tests/`：16 个测试，覆盖全部上述规则。
 
-当前核心对象为heritage_element、usage_permission、generated_asset、distribution_release，已登记事件为ELEMENT_CLASSIFIED、PERMISSION_GRANTED、ASSET_GENERATED、RELEASE_REVIEWED、PERMISSION_WITHDRAWN。这些资料只约束基础交换格式，具体业务服务需要在保持兼容的前提下继续建设。
-
-## 本地检查
+## 本地检查与演示
 
 ```bash
-npm test
+npm test          # 16 个测试：景泰蓝端到端、禁用否决、训练退出、撤回精确下架、收入核对、持久化重建、HTTP
+npm run seed      # 生成 data/demo-events.jsonl（景泰蓝基线 + 一笔已结算研学收入）
+npm run serve     # 启动查询后端，默认 http://localhost:8080
 ```
+
+查询示例：
+
+```bash
+# 这一秒画面依据什么、各权利是否允许、收益份额归谁
+curl "http://localhost:8080/releases/rel:trailer-study-cn/frame?sec=15"
+# 公开来源页（技艺、传承人、共同体署名；受限步骤不泄露工艺细节）
+curl "http://localhost:8080/assets/asset:jingtai-trailer/public"
+# 从一笔收入核对许可、署名、分配
+curl "http://localhost:8080/revenues/rev:study-demo/ledger"
+```
+
+## 景泰蓝场景中的关键判定（测试固化）
+
+- 预告在**研学（国内，展示+教学）、海外影展、工坊商城**三个渠道各自有独立许可，均获批；
+- 受限的点蓝/烧蓝步骤只有国内现场展示权，**还原成教程（需教学权）被整组拒绝**，海外展示也被拒绝；
+- 学徒小李的肖像被其本人**明确禁用改编与训练**：生成新角色被拒绝；即便合议 7:0 表决，系统也禁止越过，只能裁决维持禁用；
+- 体验者王某的线下作品默认不入库；传承人 opt-in 纹样且补授 training 权后，批次才仅准入该纹样；
+- 撤回研学许可时，**只有研学发布**进入下架清单，海外发布照常确认收入并向共同体分配 10%，无关的电子贺卡不受影响。

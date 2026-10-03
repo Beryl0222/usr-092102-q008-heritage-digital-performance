@@ -2,8 +2,14 @@
   "event_id": "092102-008-sample-001",
   "event_type": "ELEMENT_CLASSIFIED",
   "aggregate_type": "heritage_element",
-  "aggregate_id": "heritage_digital_performance-001",
+  "aggregate_id": "elt:jingtai",
   "occurred_at": "2026-09-20T12:00:00+08:00",
   "version": 1,
-  "summary": "非遗数字演绎授权领域样例"
+  "summary": "登记技艺项目：景泰蓝制作技艺",
+  "payload": {
+    "element_id": "elt:jingtai",
+    "name": "景泰蓝制作技艺",
+    "community_id": "comm:jingtailan-fang",
+    "restricted_step_ids": ["mat:step-firing"]
+  }
 }

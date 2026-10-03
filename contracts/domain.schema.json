@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "非遗数字演绎授权领域事件",
+  "description": "事件追溯信封。所有业务状态变化都以不可变事件追加，版本号在同一聚合内单调递增；payload 携带当次事件的事实细节。",
   "type": "object",
   "required": [
     "event_id",
@@ -20,19 +21,41 @@
       "type": "string",
       "enum": [
         "ELEMENT_CLASSIFIED",
+        "COMMUNITY_REGISTERED",
+        "COMMUNITY_TERMS_SET",
+        "MATERIAL_REGISTERED",
+        "MATERIAL_RECLASSIFIED",
+        "MATERIAL_TRAINING_CHOICE",
         "PERMISSION_GRANTED",
+        "PERMISSION_DENIED",
+        "PERMISSION_WITHDRAWN",
+        "CONSENT_CASE_OPENED",
+        "CONSENT_RULE_ISSUED",
+        "BATCH_RECORDED",
         "ASSET_GENERATED",
+        "ASSET_REVIEWED",
+        "CHANNEL_REGISTERED",
         "RELEASE_REVIEWED",
-        "PERMISSION_WITHDRAWN"
+        "REVENUE_RECORDED",
+        "REVENUE_ALLOCATED",
+        "TAKEDOWN_LISTED",
+        "ASSET_TAKEN_DOWN"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
         "heritage_element",
+        "source_community",
+        "material",
         "usage_permission",
+        "consent_council",
+        "generation_batch",
         "generated_asset",
-        "distribution_release"
+        "distribution_channel",
+        "distribution_release",
+        "revenue_record",
+        "takedown_order"
       ]
     },
     "aggregate_id": {
@@ -50,6 +73,91 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "description": "事件事实负载；各事件字段形状见 $defs 命名结构的说明约定。"
+    }
+  },
+  "$defs": {
+    "right": {
+      "type": "string",
+      "enum": ["display", "teaching", "training", "adaptation", "sale"],
+      "description": "展示、教学、模型训练、改编、销售是彼此独立的权利"
+    },
+    "material_kind": {
+      "type": "string",
+      "enum": [
+        "public_knowledge",
+        "restricted_step",
+        "traditional_pattern",
+        "story_material",
+        "participant_portrait",
+        "offline_work"
+      ],
+      "description": "公开知识 / 受限步骤 / 传统纹样 / 故事素材 / 参与者肖像 / 线下体验作品"
+    },
+    "permission_grant": {
+      "type": "object",
+      "description": "一条许可事实。PERMISSION_GRANTED 与 PERMISSION_DENIED 同形（后者附 reason，表示明确禁用，任何合议多数票不得越过）。字段：permission_id、grantor_id、grantor_type(holder 传承人|community 共同体约定|enterprise 企业合同)、material_ids[]、rights[]（$defs.right）、regions[]（'*' 不限地域）、channels[]（省略不限渠道）、valid_from、valid_until（省略为长期但仍可撤回）、derived_from（下游许可引用的上游 permission_id，范围不得宽于上游）、revenue_share_bps（基点，10000=100%）、attribution_required、conditions{}、reason。",
+      "required": ["permission_id", "grantor_id", "grantor_type", "material_ids", "rights", "regions", "valid_from"],
+      "properties": {
+        "permission_id": { "type": "string" },
+        "grantor_id": { "type": "string" },
+        "grantor_type": { "type": "string", "enum": ["holder", "community", "enterprise"] },
+        "material_ids": { "type": "array", "items": { "type": "string" } },
+        "rights": { "type": "array", "items": { "$ref": "#/$defs/right" } },
+        "regions": { "type": "array", "items": { "type": "string" } },
+        "channels": { "type": "array", "items": { "type": "string" } },
+        "valid_from": { "type": "string", "format": "date-time" },
+        "valid_until": { "type": "string", "format": "date-time" },
+        "derived_from": { "type": "string" },
+        "revenue_share_bps": { "type": "integer", "minimum": 0, "maximum": 10000 },
+        "attribution_required": { "type": "boolean" },
+        "conditions": { "type": "object" },
+        "reason": { "type": "string" }
+      }
+    },
+    "manifest_entry": {
+      "type": "object",
+      "description": "生成版本输入清单中的一条：material_id、role（prompt/reference_image/likeness/style/step_footage 等）、permission_ids（生成当时依据的许可，逐版本冻结核验）。",
+      "required": ["material_id"],
+      "properties": {
+        "material_id": { "type": "string" },
+        "role": { "type": "string" },
+        "permission_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "human_edit": {
+      "type": "object",
+      "description": "人工修改留痕：by、at、description。",
+      "required": ["by", "at", "description"],
+      "properties": {
+        "by": { "type": "string" },
+        "at": { "type": "string", "format": "date-time" },
+        "description": { "type": "string" }
+      }
+    },
+    "timeline_segment": {
+      "type": "object",
+      "description": "逐秒画面依据，用于回答“这一秒画面依据什么”：start_sec、end_sec、material_ids[]。",
+      "required": ["start_sec", "end_sec", "material_ids"],
+      "properties": {
+        "start_sec": { "type": "number", "minimum": 0 },
+        "end_sec": { "type": "number", "minimum": 0 },
+        "material_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "takedown_item": {
+      "type": "object",
+      "description": "真正需要下架的版本：仅限输入清单实际含被撤回素材、且无其他有效依据的版本；无关版本不得列入。字段：asset_id、version_id、release_id（可空）、reason。",
+      "required": ["asset_id", "version_id", "reason"],
+      "properties": {
+        "asset_id": { "type": "string" },
+        "version_id": { "type": "string" },
+        "release_id": { "type": ["string", "null"] },
+        "reason": { "type": "string" }
+      }
     }
   },
   "additionalProperties": true
